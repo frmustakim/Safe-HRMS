@@ -3,6 +3,7 @@ export interface Division{
   countryID:number,
   divisionName:string,
   countryName:string,
+  divisionNameUC:string,
   isDefault:boolean,
   isActive:boolean
 }

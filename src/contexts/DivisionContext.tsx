@@ -68,6 +68,7 @@ const DivisionContext = createContext({
 export const DivisionProvider: React.FC<React.ReactNode> = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState)
   const getData = async (countryID:number) => {
+    debugger
     try {
       const res = await axios.get(`http://localhost:5095/api/Divisions/${countryID}`)
       dispatch({
