@@ -24,8 +24,8 @@ const columns: readonly TableHeader[] = [
   { id: 'action', label: 'Action', headerAlign: 'center', dataAlign: 'center' }
 ]
 
-const DivisionsList = (props:any) => {
-  const { dataState, getData, handleModal, getSingleData, removeData } = useDivision();
+const DivisionsList = (props: any) => {
+  const { dataState, getData, handleModal, getSingleData, removeData } = useDivision()
   const [page, setPage] = useState<number>(0)
   const [rowsPerPage, setRowsPerPage] = useState<number>(10)
 
@@ -61,7 +61,7 @@ const DivisionsList = (props:any) => {
   useEffect(() => {
     debugger
     getData(props.countryID)
-    console.log(dataState.divisions);
+    console.log(dataState.divisions)
   }, [props.countryID])
 
   return (
@@ -70,7 +70,7 @@ const DivisionsList = (props:any) => {
         <Table sx={{ minWidth: 650 }} size='small' stickyHeader aria-label='a dense table'>
           <TableHead>
             <TableRow>
-            {columns.map(column => (
+              {columns.map(column => (
                 <TableCell
                   key={column.id}
                   align={column.headerAlign}
@@ -82,7 +82,7 @@ const DivisionsList = (props:any) => {
             </TableRow>
           </TableHead>
           <TableBody>
-          {dataState.divisions.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row, index) => {
+            {dataState.divisions.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row, index) => {
               return (
                 <TableRow hover role='checkbox' tabIndex={-1} key={row.divisionID}>
                   {columns.map(column => {

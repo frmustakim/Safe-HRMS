@@ -6,20 +6,22 @@ import Card from '@mui/material/Card'
 import DivisionsList from 'src/views/divisions/DivisionsList'
 import { DivisionProvider } from 'src/contexts/DivisionContext'
 
+
 const index = () => {
   const [countryID, setCountryID] = useState(0)
   function handleSelectionUpdate(data: any) {
-    console.log(data)
     setCountryID(data)
   }
 
   return (
     <Fragment>
       <CountryProvider>
-        <CountryDDL onSelectionUpdate={handleSelectionUpdate} />
+        <Card>
+          <CountryDDL onSelectionUpdate={handleSelectionUpdate} />
+        </Card>
       </CountryProvider>
       <DivisionProvider>
-        <Grid item xs={12}>
+        <Grid item xs={12} sx={{ my: 2 }}>
           <Card>
             <DivisionsList countryID={countryID} />
           </Card>
