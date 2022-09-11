@@ -9,7 +9,7 @@ import { Country } from 'src/Interfaces/Country'
 const CountryPageHeader = () => {
   const { dataState, handleModal } = useCountry()
   const handleClickNew = () => {
-    dataState.country = {countryID:0} as Country
+    dataState.country = {} as Country
     handleModal()
   }
   return (

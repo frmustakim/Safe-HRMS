@@ -19,6 +19,7 @@ const CountryCreateModal = () => {
 
   const handleSave = async () => {
     let country = dataState.country
+    console.log(country)
     if (country.countryID == 0) {
       dataState.country = { ...country, isDefault: false, isActive: true }
       await postData(dataState.country)

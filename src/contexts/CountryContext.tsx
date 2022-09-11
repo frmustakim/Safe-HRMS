@@ -69,7 +69,7 @@ export const CountryProvider: React.FC<React.ReactNode> = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState)
   const getData = async () => {
     try {
-      const res = await axios.get('http://localhost:21498/api/Countries')
+      const res = await axios.get('http://localhost:5095/api/Countries')
       dispatch({
         type: 'LOAD_DATA',
         payload: res.data
@@ -79,8 +79,8 @@ export const CountryProvider: React.FC<React.ReactNode> = ({ children }) => {
     }
   }
   const getSingleData = async (countryID: number) => {
-    try {
-      const res = await axios.get(`http://localhost:21498/api/Countries/${countryID}`)
+    try {    
+      const res = await axios.get(`http://localhost:5095/api/Countries/${countryID}`)
       dispatch({
         type: 'LOAD_SINGLE_DATA',
         payload: res.data
@@ -91,7 +91,7 @@ export const CountryProvider: React.FC<React.ReactNode> = ({ children }) => {
   }
   const postData = async (todo: Country) => {
     try {
-      const res = await axios.post<Country>('http://localhost:21498/api/Countries', { ...todo })
+      const res = await axios.post<Country>('http://localhost:5095/api/Countries', { ...todo })
       const returnData = res.data
       if (returnData != null) {
         getData()
@@ -102,7 +102,7 @@ export const CountryProvider: React.FC<React.ReactNode> = ({ children }) => {
   }
   const putData = async (country: Country) => {
     try {
-      const res = await axios.put<Country>(`http://localhost:21498/api/Countries/${country.countryID}`, { ...country })
+      const res = await axios.put<Country>(`http://localhost:5095/api/Countries/${country.countryID}`, { ...country })
       console.log(res)
       const returnData = res.data
       if (returnData != null) {
@@ -114,7 +114,8 @@ export const CountryProvider: React.FC<React.ReactNode> = ({ children }) => {
   }
   const removeData = async (id: number) => {
     try {
-      const res = await axios.delete<Country>(`http://localhost:21498/api/Countries/${id}`)
+      debugger
+      const res = await axios.delete<Country>(`http://localhost:5095/api/Countries/${id}`)
       const returnData = res.data
       if (returnData != null) {
         getData()
@@ -133,9 +134,7 @@ export const CountryProvider: React.FC<React.ReactNode> = ({ children }) => {
       console.error(e)
     }
   }
-  useEffect(() => {
-    getData();
-  }, []);
+  useEffect(() => {}, [])
 
   return (
     <CountryContext.Provider

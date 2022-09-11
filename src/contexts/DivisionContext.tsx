@@ -65,13 +65,12 @@ const DivisionContext = createContext({
   handleModal: () => {}
 })
 
-
 export const DivisionProvider: React.FC<React.ReactNode> = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState)
   const getData = async (countryID:number) => {
-
+    debugger
     try {
-      const res = await axios.get(`http://localhost:21498/api/Divisions/${countryID}`)
+      const res = await axios.get(`http://localhost:5095/api/Divisions/${countryID}`)
       dispatch({
         type: 'LOAD_DATA',
         payload: res.data
@@ -82,7 +81,7 @@ export const DivisionProvider: React.FC<React.ReactNode> = ({ children }) => {
   }
   const getSingleData = async (divisionID: number) => {
     try {
-      const res = await axios.get(`http://localhost:21498/api/Divisions/${divisionID}`)
+      const res = await axios.get(`http://localhost:5095/api/Divisions/${divisionID}`)
       dispatch({
         type: 'LOAD_SINGLE_DATA',
         payload: res.data
@@ -93,7 +92,7 @@ export const DivisionProvider: React.FC<React.ReactNode> = ({ children }) => {
   }
   const postData = async (division: Division) => {
     try {
-      const res = await axios.post<Division>('http://localhost:21498/api/Divisions/', { ...division })
+      const res = await axios.post<Division>('http://localhost:5095/api/Divisions/', { ...division })
       const returnData = res.data
       if (returnData != null) {
         //getData()
@@ -104,7 +103,7 @@ export const DivisionProvider: React.FC<React.ReactNode> = ({ children }) => {
   }
   const putData = async (division: Division) => {
     try {
-      const res = await axios.put<Division>(`http://localhost:21498/api/Divisions/${division.divisionID}`, { ...division })
+      const res = await axios.put<Division>(`http://localhost:5095/api/Divisions/${division.divisionID}`, { ...division })
       console.log(res)
       const returnData = res.data
       if (returnData != null) {
@@ -116,7 +115,8 @@ export const DivisionProvider: React.FC<React.ReactNode> = ({ children }) => {
   }
   const removeData = async (id: number) => {
     try {
-      const res = await axios.delete<Division>(`http://localhost:21498/api/Divisions/${id}`)
+      debugger
+      const res = await axios.delete<Division>(`http://localhost:5095/api/Divisions/${id}`)
       const returnData = res.data
       if (returnData != null) {
         //getData()
@@ -135,7 +135,7 @@ export const DivisionProvider: React.FC<React.ReactNode> = ({ children }) => {
       console.error(e)
     }
   }
-
+  useEffect(() => {}, [])
 
   return (
     <DivisionContext.Provider
