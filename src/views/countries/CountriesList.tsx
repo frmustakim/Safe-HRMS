@@ -65,7 +65,7 @@ const CountriesList = () => {
 
   useEffect(() => {
     getData()
-  }, [getData])
+  }, [])
 
   return (
     <Paper sx={{ width: '100%', overflow: 'hidden' }}>

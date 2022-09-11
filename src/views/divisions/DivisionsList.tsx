@@ -50,7 +50,6 @@ const DivisionsList = (props: any) => {
       cancelButtonColor: '#d33',
       confirmButtonText: 'Yes, delete it!'
     }).then(result => {
-      debugger
       if (result.isConfirmed) {
         removeData(divisionID)
         Swal.fire('Deleted!', 'Your file has been deleted.', 'success')
@@ -59,9 +58,7 @@ const DivisionsList = (props: any) => {
   }
 
   useEffect(() => {
-    debugger
-    getData(props.countryID)
-    console.log(dataState.divisions)
+    getData(props.countryID);
   }, [props.countryID])
 
   return (
