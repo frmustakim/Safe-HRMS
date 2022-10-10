@@ -1,10 +1,10 @@
 import React, { Fragment, useState } from 'react'
-import { CountryProvider } from 'src/contexts/CountryContext'
+import { CountryProvider } from 'src/context/CountryContext'
 import CountryDDL from 'src/views/countries/CountryDDL'
 import Grid from '@mui/material/Grid'
 import Card from '@mui/material/Card'
 import DivisionsList from 'src/views/divisions/DivisionsList'
-import { DivisionProvider } from 'src/contexts/DivisionContext'
+import { DivisionProvider } from 'src/context/DivisionContext'
 
 
 const index = () => {

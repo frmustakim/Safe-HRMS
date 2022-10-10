@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import DivisionContext from 'src/contexts/DivisionContext'
+import DivisionContext from '../context/DivisionContext'
 
 const useDivision = () => useContext(DivisionContext)
 

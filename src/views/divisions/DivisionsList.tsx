@@ -12,7 +12,7 @@ import FileEdit from 'mdi-material-ui/FileEditOutline'
 import TrashCanOutline from 'mdi-material-ui/TrashCanOutline'
 
 import IconButton from '@mui/material/IconButton'
-import { TableHeader } from 'src/Interfaces/TableHeader'
+import { TableHeader } from 'src/types/TableHeader'
 import Swal from 'sweetalert2'
 import useDivision from 'src/hooks/useDivision'
 

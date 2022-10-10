@@ -1,20 +1,22 @@
 import React, { createContext, useEffect, useReducer } from 'react'
 import axios from 'axios'
-import { Division } from 'src/Interfaces/Division'
+import { Country } from '../types/setup/Country'
+
+const url = 'http://localhost:5095/countries/'
 
 type State = {
-  divisions: Division[]
-  division: Division
+  countries: Country[]
+  country: Country
   modalOpen: boolean
 }
 
 type ActionType1 = {
   type: string
-  payload: Division[]
+  payload: Country[]
 }
 type ActionType2 = {
   type: string
-  payload: Division
+  payload: Country
 }
 type ActionType3 = {
   type: string
@@ -24,8 +26,8 @@ type ActionType3 = {
 type Action = ActionType1 | ActionType2 | ActionType3
 
 let initialState: State = {
-  divisions: [] as Division[],
-  division: {} as Division,
+  countries: [] as Country[],
+  country: {} as Country,
   modalOpen: false
 }
 
@@ -34,13 +36,13 @@ const reducer = (state: State, action: Action): State => {
     case 'LOAD_DATA': {
       return {
         ...state,
-        divisions: action.payload as Division[]
+        countries: action.payload as Country[]
       }
     }
     case 'LOAD_SINGLE_DATA': {
       return {
         ...state,
-        division: action.payload as Division
+        country: action.payload as Country
       }
     }
     case 'HANDLE_MODAL': {
@@ -55,22 +57,22 @@ const reducer = (state: State, action: Action): State => {
   }
 }
 
-const DivisionContext = createContext({
+const CountryContext = createContext({
   dataState: initialState,
-  getData: (countryID:number) => {},
-  getSingleData: (divisionID: number) => {},
-  postData: (division: Division) => {},
-  putData: (division: Division) => {},
+  getData: () => {},
+  getSingleData: (countryID: number) => {},
+  postData: (country: Country) => {},
+  putData: (country: Country) => {},
   removeData: (id: number) => {},
   handleModal: () => {}
 })
 
-export const DivisionProvider: React.FC<React.ReactNode> = ({ children }) => {
+export const CountryProvider: React.FC<React.ReactNode> = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState)
-  const getData = async (countryID:number) => {
-    debugger
+  const getData = async () => {
     try {
-      const res = await axios.get(`http://119.148.55.93:8091/api/Divisions/${countryID}`)
+      const res = await axios.get('https://localhost:5010/api/v1/hrms/country')
+      console.log(res)
       dispatch({
         type: 'LOAD_DATA',
         payload: res.data
@@ -79,9 +81,9 @@ export const DivisionProvider: React.FC<React.ReactNode> = ({ children }) => {
       console.error(e)
     }
   }
-  const getSingleData = async (divisionID: number) => {
+  const getSingleData = async (countryID: number) => {
     try {
-      const res = await axios.get(`http://119.148.55.93:8091/api/Divisions/${divisionID}`)
+      const res = await axios.get(`http://localhost:5095/api/Countries/${countryID}`)
       dispatch({
         type: 'LOAD_SINGLE_DATA',
         payload: res.data
@@ -90,24 +92,24 @@ export const DivisionProvider: React.FC<React.ReactNode> = ({ children }) => {
       console.error(e)
     }
   }
-  const postData = async (division: Division) => {
+  const postData = async (todo: Country) => {
     try {
-      const res = await axios.post<Division>('http://119.148.55.93:8091/api/Divisions/', { ...division })
+      const res = await axios.post<Country>('http://localhost:5095/api/Countries', { ...todo })
       const returnData = res.data
       if (returnData != null) {
-        //getData()
+        getData()
       }
     } catch (e) {
       console.error(e)
     }
   }
-  const putData = async (division: Division) => {
+  const putData = async (country: Country) => {
     try {
-      const res = await axios.put<Division>(`http://119.148.55.93:8091/api/Divisions/${division.divisionID}`, { ...division })
+      const res = await axios.put<Country>(`http://localhost:5095/api/Countries/${country.countryID}`, { ...country })
       console.log(res)
       const returnData = res.data
       if (returnData != null) {
-        //getData()
+        getData()
       }
     } catch (e) {
       console.error(e)
@@ -115,11 +117,11 @@ export const DivisionProvider: React.FC<React.ReactNode> = ({ children }) => {
   }
   const removeData = async (id: number) => {
     try {
-      debugger
-      const res = await axios.delete<Division>(`http://119.148.55.93:8091/api/Divisions/${id}`)
+      // debugger
+      const res = await axios.delete<Country>(`http://localhost:5095/api/Countries/${id}`)
       const returnData = res.data
       if (returnData != null) {
-        //getData()
+        getData()
       }
     } catch (e) {
       console.error(e)
@@ -138,7 +140,7 @@ export const DivisionProvider: React.FC<React.ReactNode> = ({ children }) => {
   useEffect(() => {}, [])
 
   return (
-    <DivisionContext.Provider
+    <CountryContext.Provider
       value={{
         dataState: state,
         getData,
@@ -150,7 +152,7 @@ export const DivisionProvider: React.FC<React.ReactNode> = ({ children }) => {
       }}
     >
       {children}
-    </DivisionContext.Provider>
+    </CountryContext.Provider>
   )
 }
-export default DivisionContext
+export default CountryContext

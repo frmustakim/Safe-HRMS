@@ -14,7 +14,7 @@ import TrashCanOutline from 'mdi-material-ui/TrashCanOutline'
 
 import IconButton from '@mui/material/IconButton'
 import useCountry from 'src/hooks/useCountry'
-import { TableHeader } from 'src/Interfaces/TableHeader'
+import { TableHeader } from 'src/types/TableHeader'
 import Swal from 'sweetalert2'
 
 const columns: readonly TableHeader[] = [

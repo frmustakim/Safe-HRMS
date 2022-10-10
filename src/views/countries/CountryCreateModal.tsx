@@ -12,7 +12,7 @@ import CountryCreate from './CountryCreate'
 import useCountry from 'src/hooks/useCountry'
 import { useEffect, useState } from 'react'
 import Floppy from 'mdi-material-ui/Floppy'
-import { Country } from 'src/Interfaces/Country'
+import { Country } from 'src/types/setup/Country'
 
 const CountryCreateModal = () => {
   const { dataState, handleModal, postData, putData } = useCountry()
@@ -20,7 +20,7 @@ const CountryCreateModal = () => {
   const handleSave = async () => {
     let country = dataState.country
     console.log(country)
-    if (country.countryID == 0) {
+    if (!country.countryID) {
       dataState.country = { ...country, isDefault: false, isActive: true }
       await postData(dataState.country)
     } else {

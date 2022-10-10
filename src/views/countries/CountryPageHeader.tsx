@@ -4,7 +4,7 @@ import Typography from '@mui/material/Typography'
 import Plus from 'mdi-material-ui/Plus'
 import React, { Fragment } from 'react'
 import useCountry from 'src/hooks/useCountry'
-import { Country } from 'src/Interfaces/Country'
+import { Country } from 'src/types/setup/Country'
 
 const CountryPageHeader = () => {
   const { dataState, handleModal } = useCountry()

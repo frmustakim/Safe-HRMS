@@ -6,7 +6,7 @@ import React from 'react'
 import CountriesList from 'src/views/countries/CountriesList'
 
 import CountryCreateModal from 'src/views/countries/CountryCreateModal'
-import { CountryProvider } from 'src/contexts/CountryContext'
+import { CountryProvider } from 'src/context/CountryContext'
 import CountryPageHeader from 'src/views/countries/CountryPageHeader'
 
 const index = () => {
