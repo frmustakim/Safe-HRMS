@@ -1,8 +1,8 @@
 import Grid from '@mui/material/Grid'
 import TextField from '@mui/material/TextField'
 import React, { FormEventHandler, useEffect, useState } from 'react'
-import { IBuyer } from 'src/Interfaces/IBuyer'
-import { Country } from 'src/Interfaces/Country'
+// import { IBuyer } from 'src/Interfaces/IBuyer'
+import { Country } from '../../types/setup/Country'
 import useCountry from 'src/hooks/useCountry'
 
 const CountryCreate = () => {
